@@ -1,0 +1,34 @@
+<?php
+
+namespace DummyNamespace;
+
+use DagaSmart\Auditing\Contracts\Audit;
+use DagaSmart\Auditing\Contracts\Auditable;
+use DagaSmart\Auditing\Contracts\AuditDriver;
+
+class DummyClass implements AuditDriver
+{
+    /**
+     * Perform an audit.
+     *
+     * @param \DagaSmart\Auditing\Contracts\Auditable $model
+     *
+     * @return \DagaSmart\Auditing\Contracts\Audit
+     */
+    public function audit(Auditable $model): Audit
+    {
+        // TODO: Implement the audit logic
+    }
+
+    /**
+     * Remove older audits that go over the threshold.
+     *
+     * @param \DagaSmart\Auditing\Contracts\Auditable $model
+     *
+     * @return bool
+     */
+    public function prune(Auditable $model): bool
+    {
+        // TODO: Implement the pruning logic
+    }
+}
