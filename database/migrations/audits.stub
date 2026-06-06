@@ -18,17 +18,19 @@ return new class extends Migration
 
             $morphPrefix = config('audit.user.morph_prefix', 'user');
 
+            $table->comment('模型事件审计表');
+
             $table->bigIncrements('id');
-            $table->string($morphPrefix . '_type')->nullable();
-            $table->unsignedBigInteger($morphPrefix . '_id')->nullable();
-            $table->string('event');
-            $table->morphs('auditable');
-            $table->text('old_values')->nullable();
-            $table->text('new_values')->nullable();
-            $table->text('url')->nullable();
-            $table->ipAddress('ip_address')->nullable();
-            $table->string('user_agent', 1023)->nullable();
-            $table->string('tags')->nullable();
+            $table->string($morphPrefix . '_type')->nullable()->comment('用户类型');
+            $table->unsignedBigInteger($morphPrefix . '_id')->nullable()->comment('用户id');
+            $table->string('event')->comment('行为事件');
+            $table->morphs('auditable')->comment('模型主键id');
+            $table->text('old_values')->nullable()->comment('旧数据');
+            $table->text('new_values')->nullable()->comment('新数据');
+            $table->text('url')->nullable()->comment('url');
+            $table->ipAddress('ip_address')->nullable()->comment('ip');
+            $table->string($morphPrefix . '_agent', 1023)->nullable()->comment('用户代理');
+            $table->string('tags')->nullable()->comment('标签');
             $table->timestamps();
 
             $table->index([$morphPrefix . '_id', $morphPrefix . '_type']);
