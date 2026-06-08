@@ -45,14 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        if (Schema::hasTable($this->name)) {
-            // 检查是否存在数据
-            $exists = DB::table($this->name)->exists();
-            // 不存在数据时，删除表
-            if (! $exists) {
-                // 删除 reverse
-                Schema::dropIfExists($this->name);
-            }
-        }
+        Schema::dropIfExists($this->name);
     }
 };
